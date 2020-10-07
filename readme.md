@@ -1,3 +1,3 @@
-Title: How do I receive email via IMAP?
+Title: How do I copy, move, or delete emails via IMAP?
 
-Version min: 4D v18 R4
+Version min: 4D v18 R5
