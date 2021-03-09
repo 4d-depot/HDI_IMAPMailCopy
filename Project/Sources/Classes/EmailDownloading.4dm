@@ -1,8 +1,6 @@
-Class constructor($transporter : Object; $numberMails : Integer)
+Class constructor($numberMails : Integer)
 	
-	This:C1470._transporter:=$transporter
 	This:C1470._numberMails:=$numberMails
-	This:C1470._selectedBox:=$transporter.getBoxInfo()
 	This:C1470.mails:=Null:C1517
 	
 Function startTimer
@@ -13,32 +11,32 @@ Function startTimer
 	SET TIMER:C645(1)
 	
 	// Start receiving of the mail list according to the number of mail defined by Form.numberMails
-Function startDownload()
+Function startDownload($transporter : Object)
 	// Stop the timer
 	SET TIMER:C645(0)
 	
 	// Fills the mails collection with the list of the last "numberMails" emails received
 	// Fills the list of attachements and the body if necessary of the first email of the list
 	// Creation of the mail lists. They contain just the mail headers
-	This:C1470._receiveMails()
+	This:C1470._receiveMails($transporter)
 	
 	
 	// Receives the number of last mails asked by the user
-Function _receiveMails()
+Function _receiveMails($transporter : Object)
 	
 	var $min : Integer
 	var $mails : Collection
 	
 	// Search the list of emails and the information for each emails
 	This:C1470.mails:=New collection:C1472
-	If (This:C1470._selectedBox.mailCount>0)
+	If ($transporter.getBoxInfo().mailCount>0)
 		
 		// calculation of the position of the first email to download
-		$min:=This:C1470._selectedBox.mailCount-This:C1470._numberMails
+		$min:=$transporter.getBoxInfo().mailCount-This:C1470._numberMails
 		
 		
 		// Download of the last emails
-		$mails:=This:C1470._transporter.getMails($min; This:C1470._selectedBox.mailCount; New object:C1471("withBody"; False:C215; "updateSeen"; False:C215)).list
+		$mails:=$transporter.getMails($min; $transporter.getBoxInfo().mailCount; New object:C1471("withBody"; False:C215; "updateSeen"; False:C215)).list
 		
 		This:C1470.mails:=$mails.reverse()
 		

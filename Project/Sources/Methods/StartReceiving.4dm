@@ -19,6 +19,6 @@ If (Is a list:C621(ListRef))
 	End if 
 	
 	// start the downoad of the emails
-	Form:C1466.receiveMails:=cs:C1710.EmailDownloading.new(Form:C1466.transporter; Form:C1466.numberMails)
+	Form:C1466.receiveMails:=cs:C1710.EmailDownloading.new(Form:C1466.numberMails)
 	Form:C1466.receiveMails.startTimer()
 End if 

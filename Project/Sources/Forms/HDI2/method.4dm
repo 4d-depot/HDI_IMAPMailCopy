@@ -13,7 +13,7 @@ Case of
 			
 			If ((Form:C1466.mails=Null:C1517) & (Form:C1466.transporter#Null:C1517))
 				Form:C1466.transporter.selectBox("INBOX")
-				Form:C1466.receiveMails:=cs:C1710.EmailDownloading.new(Form:C1466.transporter; Form:C1466.numberMails)
+				Form:C1466.receiveMails:=cs:C1710.EmailDownloading.new(Form:C1466.numberMails)
 				Form:C1466.receiveMails.startTimer()
 				$position:=Find in list:C952(ListRef; "INBOX"; 0)
 				If (Bool:C1537($position))
@@ -28,7 +28,7 @@ Case of
 			TRACE:C157
 		End if 
 		
-		Form:C1466.receiveMails.startDownload()
+		Form:C1466.receiveMails.startDownload(Form:C1466.transporter)
 		
 		OBJECT SET VISIBLE:C603(*; "Download"; False:C215)
 		

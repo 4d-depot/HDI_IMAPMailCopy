@@ -13,6 +13,7 @@ If (Form:C1466.mails.length>0)
 	$status:=Form:C1466.transporter.delete($ids)
 	
 	If ($status.success)
+		// If the 4D version is 18r6 or above, replace the close and open session by Form.transporter.expunge( ) 
 		// Close the session. It force the deletion of the emails
 		Form:C1466.transporter:=Null:C1517
 		// Open the session. 

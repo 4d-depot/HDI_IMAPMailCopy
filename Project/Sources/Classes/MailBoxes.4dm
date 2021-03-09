@@ -1,10 +1,9 @@
 Class constructor($transporter : Object)
 	
-	This:C1470._transporter:=$transporter
 	// List of mailboxes returned by the server
-	This:C1470._mailboxes:=This:C1470._transporter.getBoxList()
+	This:C1470._mailboxes:=$transporter.getBoxList()
 	// delimiter used by the server to separate mailboxe name
-	This:C1470._separator:=This:C1470._transporter.getDelimiter()
+	This:C1470._separator:=$transporter.getDelimiter()
 	// id used to identify a mailbox name in the list
 	This:C1470._UID:=cs:C1710.Counter.new()
 	
